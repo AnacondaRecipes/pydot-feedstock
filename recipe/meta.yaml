@@ -1,6 +1,6 @@
 {% set name = "pydot" %}
-{% set version = "1.4.1" %}
-{% set sha256 = "d49c9d4dd1913beec2a997f831543c8cbd53e535b1a739e921642fe416235f01" %}
+{% set version = "1.4.2" %}
+{% set sha256 = "248081a39bcb56784deb018977e428605c1c758f10897a339fce1dd728ff007d" %}
 
 package:
   name: {{ name|lower }}
@@ -14,32 +14,40 @@ source:
 build:
   number: 0
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
+  skip: True  # [py<35]
 
 requirements:
   host:
     - pip
-    - setuptools
     - python
-    - pyparsing >=2.1.4
+    - pyparsing
+    - setuptools
+    - wheel
   run:
     - python
     - pyparsing >=2.1.4
-    - graphviz
+    # Cautious pinning
+    - graphviz <3
 
 test:
   imports:
     - pydot
-
+  commands:
+    - pip check
+  requires:
+    - pip
+  
 about:
-  home: https://github.com/erocarrera/pydot
+  home: https://github.com/pydot/pydot
   license: MIT
+  license_family: MIT
   license_file: LICENSE
   summary: Python interface to Graphviz's Dot
   description: |
       This module provides with a full interface to create handle modify and
       process graphs in Graphviz’s dot language.
   doc_url: https://pypi.python.org/pypi/pydot
-  dev_url: https://github.com/erocarrera/pydot
+  dev_url: https://github.com/pydot/pydot
 
 extra:
   recipe-maintainers:
