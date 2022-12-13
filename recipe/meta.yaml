@@ -25,7 +25,7 @@ requirements:
     - wheel
   run:
     - python
-    - pyparsing >=2.1.4
+    - pyparsing >=2.1.4,<3
     # Cautious pinning
     - graphviz <3
 
