@@ -41,7 +41,7 @@ about:
   home: https://github.com/pydot/pydot
   license: MIT
   license_family: MIT
-  license_file: LICENSE
+  license_file: LICENSES/MIT.txt
   summary: Python interface to Graphviz's Dot
   description: |
       This module provides with a full interface to create handle modify and
