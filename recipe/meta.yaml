@@ -26,6 +26,18 @@ requirements:
     - pyparsing >=3.1.0
     - graphviz
 
+# Graphviz regression tests that fail on Windows due to platform differences
+# in graphviz image rendering output (image checksum mismatches in
+# `_compare_images`).
+{% set deselect_tests = " --deselect=test/test_pydot.py::TestGraphvizRegressions::test_regression_006_b102" %}
+{% set deselect_tests = deselect_tests + " --deselect=test/test_pydot.py::TestGraphvizRegressions::test_regression_018_b29" %}
+{% set deselect_tests = deselect_tests + " --deselect=test/test_pydot.py::TestGraphvizRegressions::test_regression_026_b53" %}
+{% set deselect_tests = deselect_tests + " --deselect=test/test_pydot.py::TestGraphvizRegressions::test_regression_069_decorate" %}
+{% set deselect_tests = deselect_tests + " --deselect=test/test_pydot.py::TestGraphvizRegressions::test_regression_140_lsunix" %}
+{% set deselect_tests = deselect_tests + " --deselect=test/test_pydot.py::TestGraphvizRegressions::test_regression_141_mike" %}
+{% set deselect_tests = deselect_tests + " --deselect=test/test_pydot.py::TestGraphvizRegressions::test_regression_144_NaN" %}
+{% set deselect_tests = deselect_tests + " --deselect=test/test_pydot.py::TestGraphvizRegressions::test_regression_176_trapeziumlr" %}
+
 test:
   source_files:
     - test
@@ -38,7 +50,8 @@ test:
     - pydot.dot_parser
   commands:
     - pip check
-    - pytest -ra -v -n auto test
+    - pytest -ra -v -n auto test  # [not win]
+    - pytest -ra -v -n auto test {{ deselect_tests }}  # [win]
   requires:
     - pip
     - pytest
