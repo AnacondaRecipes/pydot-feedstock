@@ -29,14 +29,20 @@ requirements:
 # Graphviz regression tests that fail on Windows due to platform differences
 # in graphviz image rendering output (image checksum mismatches in
 # `_compare_images`).
-{% set deselect_tests = " --deselect=test/test_pydot.py::TestGraphvizRegressions::test_regression_006_b102" %}
+{% set deselect_tests = " --deselect=test/test_pydot.py::TestGraphvizRegressions::test_regression_002_alf" %}
+{% set deselect_tests = deselect_tests + " --deselect=test/test_pydot.py::TestGraphvizRegressions::test_regression_006_b102" %}
+{% set deselect_tests = deselect_tests + " --deselect=test/test_pydot.py::TestGraphvizRegressions::test_regression_007_b106" %}
+{% set deselect_tests = deselect_tests + " --deselect=test/test_pydot.py::TestGraphvizRegressions::test_regression_012_b143" %}
 {% set deselect_tests = deselect_tests + " --deselect=test/test_pydot.py::TestGraphvizRegressions::test_regression_018_b29" %}
 {% set deselect_tests = deselect_tests + " --deselect=test/test_pydot.py::TestGraphvizRegressions::test_regression_026_b53" %}
+{% set deselect_tests = deselect_tests + " --deselect=test/test_pydot.py::TestGraphvizRegressions::test_regression_028_b56" %}
 {% set deselect_tests = deselect_tests + " --deselect=test/test_pydot.py::TestGraphvizRegressions::test_regression_069_decorate" %}
 {% set deselect_tests = deselect_tests + " --deselect=test/test_pydot.py::TestGraphvizRegressions::test_regression_140_lsunix" %}
 {% set deselect_tests = deselect_tests + " --deselect=test/test_pydot.py::TestGraphvizRegressions::test_regression_141_mike" %}
 {% set deselect_tests = deselect_tests + " --deselect=test/test_pydot.py::TestGraphvizRegressions::test_regression_144_NaN" %}
 {% set deselect_tests = deselect_tests + " --deselect=test/test_pydot.py::TestGraphvizRegressions::test_regression_176_trapeziumlr" %}
+{% set deselect_tests = deselect_tests + " --deselect=test/test_pydot.py::TestGraphvizRegressions::test_regression_180_unix" %}
+{% set deselect_tests = deselect_tests + " --deselect=test/test_pydot.py::TestGraphvizRegressions::test_regression_181_unix2k" %}
 
 test:
   source_files:
