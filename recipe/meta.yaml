@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
   skip: true  # [py<38]
 
@@ -24,22 +24,35 @@ requirements:
   run:
     - python
     - pyparsing >=3.1.0
-    # Cautious pinning
-    - graphviz <3
+    - graphviz
 
 test:
+  source_files:
+    - test
+    - setup.cfg
   imports:
     - pydot
+    - pydot.core
+    - pydot.classes
+    - pydot.exceptions
+    - pydot.dot_parser
   commands:
     - pip check
+    - pytest -ra -v -n auto test
   requires:
     - pip
+    - pytest
+    - chardet
+    - parameterized
+    - pytest-xdist
 
 about:
   home: https://github.com/pydot/pydot
   license: MIT
   license_family: MIT
-  license_file: LICENSES/MIT.txt
+  license_file:
+    - LICENSES/MIT.txt
+    - LICENSES/Python-2.0.txt
   summary: Python interface to Graphviz's Dot
   description: |
     This module provides with a full interface to create handle modify and
